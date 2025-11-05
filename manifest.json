@@ -1,13 +1,13 @@
 {
   "id": "./",
-  "name": "PWA Template Responsif",
-  "short_name": "PWA Demo",
-  "description": "Aplikasi PWA responsif untuk demonstrasi template dasar Progressive Web App dengan dukungan offline dan installable.",
+  "name": "Zero Cycle",
+  "short_name": "Zero Cycle",
+  "description": "Zero Cycle merupakan Progressive Web App (PWA) yang memfasilitasi pengguna untuk menyetorkan sampah non-organik langsung ke pengepul dan mesin daur ulang.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#4F46E5",
-  "theme_color": "#4F46E5",
+  "background_color": "#ffffff",
+  "theme_color": "#6f8727",
   "orientation": "portrait",
   "lang": "id",
   "icons": [
