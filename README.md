@@ -1,4 +1,3 @@
-
 # Zero Cycle
 
 ZeroCycle adalah aplikasi PWA yang memfasilitasi penyetoran sampah non-organik (ke pengepul/mesin daur ulang). Mengusung konsep "sedekah sampah", ZeroCycle mengubah sampah bernilai rendah menjadi bahan baru dan menukar sampah bernilai tinggi dengan merchandise sebagai bentuk kontribusi lingkungan dan sosial.
@@ -37,3 +36,4 @@ Menu Bantuan dirancang untuk memudahkan pengguna menemukan jawaban atas pertanya
 Menu Edukasi berfungsi sebagai sumber informasi dan pengetahuan untuk meningkatkan kesadaran lingkungan pengguna.
 - Konten Informatif: Menu ini berisi beragam artikel dan infografis yang fokus pada isu sampah, lingkungan, daur ulang, serta panduan mendetail mengenai cara efektif menggunakan aplikasi Zero Cycle (termasuk penjelasan tentang apa itu Zero Cycle).
 - Akses Konten Penuh: Setiap ringkasan artikel yang ditampilkan dapat diklik, yang akan mengarahkan pengguna ke Halaman Selengkapnya. Di halaman ini, pengguna dapat membaca, memahami, dan mempelajari materi secara lebih mendalam, didukung oleh visual dan penjelasan yang lebih jelas.
+s
