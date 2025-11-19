@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="description" content="TrainUp - Aplikasi workout modern dengan video TikTok">
+    <title>TrainUp - Train Yourself to Level Up</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="manifest" href="#" id="manifestPlaceholder">
+    
+    <style>
+        :root {
+            --primary-purple: #a855f7;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-glow: rgba(168, 85, 247, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+        
+        /* Header */
+        .app-header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #2d2d2d 100%);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+        }
+        
+        .greeting {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Progress Ring */
+        .progress-section {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .progress-ring {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+        
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring circle {
+            fill: none;
+            stroke-width: 8;
+        }
+        
+        .progress-ring .bg-circle {
+            stroke: var(--card-bg);
+        }
+        
+        .progress-ring .progress-circle {
+            stroke: var(--primary-purple);
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+        }
+        
+        /* Video Card */
+        .video-section {
+            padding: 0 20px 20px;
+        }
+        
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .video-container {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--text-secondary);
+        }
+        
+        .video-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            color: var(--primary-purple);
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .video-meta {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .video-actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .action-btn.active {
+            color: var(--primary-purple);
+        }
+        
+        .action-btn:hover {
+            color: var(--primary-purple);
+            transform: scale(1.1);
+        }
+        
+        /* Category Section */
+        .category-section {
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .category-item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .category-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #ec4899 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+        
+        .category-name {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Program Cards */
+        .program-section {
+            padding: 20px;
+        }
+        
+        .program-scroll {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+        
+        .program-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .program-card {
+            min-width: 280px;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #ec4899 100%);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .program-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .program-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .program-desc {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .program-progress {
+            background: rgba(255, 255, 255, 0.3);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .program-progress-bar {
+            background: white;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+        
+        .nav-item i {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+        
+        .nav-item.active i {
+            color: var(--primary-purple);
+        }
+        
+        .nav-item span {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+        
+        .nav-item.active span {
+            color: var(--primary-purple);
+        }
+        
+        /* Pages */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Explore Page */
+        .search-bar {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 12px 20px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-bar input {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            flex: 1;
+            outline: none;
+        }
+        
+        .search-bar input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .filter-chips {
+            display: flex;
+            gap: 10px;
+            padding: 0 20px 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .filter-chips::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .chip {
+            background: var(--card-bg);
+            padding: 8px 20px;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        .chip.active {
+            background: var(--primary-purple);
+            border-color: var(--primary-purple);
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 20px 20px;
+        }
+        
+        .video-grid-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .video-grid-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .video-grid-thumb {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-grid-thumb i {
+            font-size: 3rem;
+            color: var(--primary-purple);
+        }
+        
+        .video-grid-info {
+            padding: 10px;
+        }
+        
+        .video-grid-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .video-grid-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Progress Page */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .calendar {
+            padding: 20px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1;
+            background: var(--card-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            position: relative;
+        }
+        
+        .calendar-day.completed::after {
+            content: '';
+            position: absolute;
+            bottom: 3px;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-purple);
+            border-radius: 50%;
+        }
+        
+        .calendar-day.today {
+            background: var(--primary-purple);
+        }
+        
+        /* Profile Page */
+        .profile-header {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #ec4899 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+        
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .profile-level {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .profile-menu {
+            padding: 0 20px 20px;
+        }
+        
+        .menu-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .menu-item:hover {
+            background: var(--primary-purple);
+        }
+        
+        .menu-item-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .menu-item-left i {
+            font-size: 1.5rem;
+            color: var(--primary-purple);
+        }
+        
+        .menu-item:hover .menu-item-left i {
+            color: white;
+        }
+        
+        /* Toast Notification */
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-purple);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .toast-notification.show {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toggle-switch {
+            width: 50px;
+            height: 26px;
+            background: var(--card-bg);
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .toggle-switch.active {
+            background: var(--primary-purple);
+        }
+        
+        .toggle-slider {
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+        
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(24px);
+        }
+        
+        /* Workout Page */
+        .workout-container {
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none;
+        }
+        
+        .workout-container::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .workout-video {
+            height: calc(100vh - 80px);
+            scroll-snap-align: start;
+            position: relative;
+        }
+        
+        .workout-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        }
+        
+        /* Install Banner */
+        .install-banner {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #ec4899 100%);
+            padding: 15px 20px;
+            margin: 20px;
+            border-radius: 15px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .install-banner.show {
+            display: flex;
+        }
+        
+        .install-btn {
+            background: white;
+            color: var(--primary-purple);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--card-bg);
+            border-top: 4px solid var(--primary-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast">
+        <div id="toastMessage"></div>
+    </div>
+
+    <!-- Install Banner -->
+    <div class="install-banner" id="installBanner">
+        <div>
+            <strong>Install TrainUp</strong>
+            <div style="font-size: 0.85rem; opacity: 0.9;">Get the full app experience</div>
+        </div>
+        <button class="install-btn" id="installBtn">Install</button>
+    </div>
+
+    <!-- Home Page -->
+    <div class="page active" id="homePage">
+        <div class="app-header">
+            <div class="greeting">Hi Dhia 👋</div>
+            <div class="subtitle">Ready to TrainUp?</div>
+        </div>
+        
+        <div class="progress-section">
+            <div class="progress-ring">
+                <svg width="150" height="150">
+                    <circle class="bg-circle" cx="75" cy="75" r="65"></circle>
+                    <circle class="progress-circle" cx="75" cy="75" r="65" 
+                            stroke-dasharray="408.4" stroke-dashoffset="102.1" id="progressCircle"></circle>
+                </svg>
+                <div class="progress-text" id="progressText">75%</div>
+            </div>
+            <div class="section-title">Today's Progress</div>
+            <div class="video-meta">3 of 4 workouts completed 🔥</div>
+        </div>
+        
+        <div class="video-section">
+            <div class="section-title" style="padding: 0 20px;">Recommended for You</div>
+            <div class="video-card">
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <i class="bi bi-play-circle"></i>
+                        <div>15 Min Full Body HIIT</div>
+                        <div style="font-size: 0.8rem; margin-top: 5px;">Tap to play</div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Morning Energy Boost</div>
+                    <div class="video-meta">15 min • Beginner • 💪 Full Body</div>
+                </div>
+                <div class="video-actions">
+                    <button class="action-btn" onclick="toggleLike(this)">
+                        <i class="bi bi-heart"></i>
+                        <span style="font-size: 0.85rem;">256</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="bi bi-bookmark"></i>
+                        <span style="font-size: 0.85rem;">Save</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="bi bi-share"></i>
+                        <span style="font-size: 0.85rem;">Share</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="category-section">
+            <div class="section-title">Categories</div>
+            <div class="category-grid">
+                <div class="category-item" onclick="filterCategory('Full Body')">
+                    <div class="category-icon">💪</div>
+                    <div class="category-name">Full Body</div>
+                </div>
+                <div class="category-item" onclick="filterCategory('HIIT')">
+                    <div class="category-icon">🔥</div>
+                    <div class="category-name">HIIT</div>
+                </div>
+                <div class="category-item" onclick="filterCategory('Abs')">
+                    <div class="category-icon">⚡</div>
+                    <div class="category-name">Abs</div>
+                </div>
+                <div class="category-item" onclick="filterCategory('Yoga')">
+                    <div class="category-icon">🧘</div>
+                    <div class="category-name">Yoga</div>
+                </div>
+                <div class="category-item" onclick="filterCategory('Cardio')">
+                    <div class="category-icon">🏃</div>
+                    <div class="category-name">Cardio</div>
+                </div>
+                <div class="category-item" onclick="filterCategory('Stretching')">
+                    <div class="category-icon">🤸</div>
+                    <div class="category-name">Stretching</div>
+                </div>
+                <div class="category-item" onclick="filterCategory('Dance')">
+                    <div class="category-icon">💃</div>
+                    <div class="category-name">Dance</div>
+                </div>
+                <div class="category-item" onclick="filterCategory('Strength')">
+                    <div class="category-icon">🏋️</div>
+                    <div class="category-name">Strength</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="program-section">
+            <div class="section-title">Programs</div>
+            <div class="program-scroll">
+                <div class="program-card" onclick="showToast('Starting 7-Day Challenge! 💪')">
+                    <div class="program-title">7-Day Challenge</div>
+                    <div class="program-desc">Start your fitness journey with this beginner-friendly program</div>
+                    <div class="program-progress">
+                        <div class="program-progress-bar" style="width: 40%"></div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.85rem;">Day 3 of 7</div>
+                </div>
+                <div class="program-card" onclick="showToast('30-Day Transformation starting soon! 🚀')">
+                    <div class="program-title">30-Day Transformation</div>
+                    <div class="program-desc">Complete body transformation with progressive workouts</div>
+                    <div class="program-progress">
+                        <div class="program-progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.85rem;">Not started</div>
+                </div>
+                <div class="program-card" onclick="showToast('Summer Body Challenge! ☀️')">
+                    <div class="program-title">Summer Body</div>
+                    <div class="program-desc">Get beach-ready with high-intensity workouts</div>
+                    <div class="program-progress">
+                        <div class="program-progress-bar" style="width: 75%"></div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.85rem;">Day 23 of 30</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Explore Page -->
+    <div class="page" id="explorePage">
+        <div class="app-header">
+            <div class="greeting">Explore Workouts</div>
+            <div class="subtitle">Find your perfect workout</div>
+        </div>
+        
+        <div class="search-bar">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search workouts..." id="searchInput">
+        </div>
+        
+        <div class="filter-chips">
+            <div class="chip active" onclick="selectChip(this, 'All')">All</div>
+            <div class="chip" onclick="selectChip(this, 'Beginner')">Beginner</div>
+            <div class="chip" onclick="selectChip(this, 'Intermediate')">Intermediate</div>
+            <div class="chip" onclick="selectChip(this, 'Advanced')">Advanced</div>
+            <div class="chip" onclick="selectChip(this, 'Quick')">Quick (< 15min)</div>
+        </div>
+        
+        <div class="video-grid" id="videoGrid">
+            <div class="video-grid-item" onclick="playVideo('Quick Abs Blast')">
+                <div class="video-grid-thumb">
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class="video-grid-info">
+                    <div class="video-grid-title">Quick Abs Blast</div>
+                    <div class="video-grid-meta">10 min • Intermediate</div>
+                </div>
+            </div>
+            <div class="video-grid-item" onclick="playVideo('Morning Yoga Flow')">
+                <div class="video-grid-thumb">
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class="video-grid-info">
+                    <div class="video-grid-title">Morning Yoga Flow</div>
+                    <div class="video-grid-meta">20 min • Beginner</div>
+                </div>
+            </div>
+            <div class="video-grid-item" onclick="playVideo('HIIT Cardio Burn')">
+                <div class="video-grid-thumb">
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class="video-grid-info">
+                    <div class="video-grid-title">HIIT Cardio Burn</div>
+                    <div class="video-grid-meta">15 min • Advanced</div>
+                </div>
+            </div>
+            <div class="video-grid-item" onclick="playVideo('Full Body Strength')">
+                <div class="video-grid-thumb">
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class="video-grid-info">
+                    <div class="video-grid-title">Full Body Strength</div>
+                    <div class="video-grid-meta">30 min • Intermediate</div>
+                </div>
+            </div>
+            <div class="video-grid-item" onclick="playVideo('Dance Cardio Party')">
+                <div class="video-grid-thumb">
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class="video-grid-info">
+                    <div class="video-grid-title">Dance Cardio Party</div>
+                    <div class="video-grid-meta">25 min • Beginner</div>
+                </div>
+            </div>
+            <div class="video-grid-item" onclick="playVideo('Evening Stretch')">
+                <div class="video-grid-thumb">
+                    <i class="bi bi-play-circle-fill"></i>
+                </div>
+                <div class="video-grid-info">
+                    <div class="video-grid-title">Evening Stretch</div>
+                    <div class="video-grid-meta">12
