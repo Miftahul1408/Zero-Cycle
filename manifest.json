@@ -1,54 +1,20 @@
 {
-  "id": "./",
-  "name": "Zero Cycle",
-  "short_name": "Zero Cycle",
-  "description": "Zero Cycle merupakan Progressive Web App (PWA) yang memfasilitasi pengguna untuk menyetorkan sampah non-organik langsung ke pengepul dan mesin daur ulang.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "name": "ZeroCycle",
+  "short_name": "ZeroCycle",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#6f8727",
-  "orientation": "portrait",
-  "lang": "id",
+  "background_color": "#1a0033",
+  "theme_color": "#1a0033",
   "icons": [
     {
-      "src": "icons/icon-192x192-A.png",
+      "src": "icons/icon-zerocycle-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icons/icon-512x512-B.png",
+      "src": "icons/icon-zerocycle-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "screenshots": [
-    {
-      "src": "icons/screenshot1.png",
-      "sizes": "1080x1920",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/screenshot2.png",
-      "sizes": "1080x1920",
-      "type": "image/png"
-    }
-  ],
-  "shortcuts": [
-    {
-      "name": "Buka Beranda",
-      "short_name": "Home",
-      "url": "./index.html",
-      "icons": [
-        {
-          "src": "icons/icon-192x192-A.png",
-          "sizes": "192x192"
-        }
-      ]
-    }
-  ],
-  "categories": [
-    "productivity",
-    "utilities"
   ]
 }
