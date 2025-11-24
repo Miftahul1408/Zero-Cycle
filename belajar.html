@@ -606,12 +606,18 @@
             <!-- Services -->
             <h2 class="section-title">Layanan Kami</h2>
             
-            <div class="row">
-                <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
                     <div class="service-card" onclick="openDropOff()">
-                        <i class="bi bi-geo-alt"></i>
-                        <h3>Layanan Antar (Drop-off)</h3>
-                        <p>Antarkan sampah Anda ke lokasi terdekat</p>
+                    <i class="bi bi-geo-alt"></i>
+                    <h3>Layanan Antar (Drop-off)</h3>
+                    <p>Antarkan sampah Anda ke lokasi terdekat</p>
+
+                    <!-- Link sudah diperbaiki agar langsung ke titiknya -->
+                    <a href="https://www.google.com/maps?q=-7.5988707,110.814113"
+                    target="_blank"
+                    style="padding:10px 16px; background:#4caf4f00; color:rgba(255, 255, 255, 0); border-radius:8px; text-decoration:none;">
+                    </a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -920,10 +926,7 @@
         
         // Drop-off Service
         function openDropOff() {
-            const latitude = -7.5567; // Surakarta coordinates
-            const longitude = 110.8316;
-            const query = 'tempat daur ulang sampah';
-            const url = `https://www.google.com/maps/search/${encodeURIComponent(query)}/@${latitude},${longitude},13z`;
+            const url = "https://maps.app.goo.gl/u5PV6Sg9uzMrPZwUA";
             window.open(url, '_blank');
         }
         
@@ -1333,7 +1336,7 @@
                 <div class="edu-content">
                     <h4>Kategori Sampah Bernilai Tinggi</h4>
                     <p>Kenali jenis-jenis sampah bernilai tinggi yang bisa Anda tukarkan dengan apresiasi lebih besar.</p>
-                    <span claFss="edu-badge">Infografis</span>
+                    <span class="edu-badge">Infografis</span>
                 </div>
             </div>
             
