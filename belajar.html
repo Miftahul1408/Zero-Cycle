@@ -921,14 +921,15 @@
             const latitude = -7.5567; // Surakarta coordinates
             const longitude = 110.8316;
             const query = 'tempat daur ulang sampah';
-            const url = `https://maps.app.goo.gl/u5PV6Sg9uzMrPZwUA';
+            const url = `https://maps.app.goo.gl/u5PV6Sg9uzMrPZwUA${encodeURIComponent(query)}/@${latitude},${longitude},13z`;
+            window.open(url, '_blank');
         }
         
         // Pick-up Service
         function openPickUp() {
             const phoneNumber = '6281234567890'; // Replace with actual admin number
             const message = 'Halo Admin Zero Cycle, saya ingin menggunakan layanan jemput sampah. Mohon informasi lebih lanjut.';
-            const url = `https://wa.me/08600720692?text=${encodeURIComponent(message)}`;
+            const url = `https://wa.me/6285600720692${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
         
