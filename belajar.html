@@ -606,18 +606,12 @@
             <!-- Services -->
             <h2 class="section-title">Layanan Kami</h2>
             
-                <div class="row">
-                    <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
                     <div class="service-card" onclick="openDropOff()">
-                    <i class="bi bi-geo-alt"></i>
-                    <h3>Layanan Antar (Drop-off)</h3>
-                    <p>Antarkan sampah Anda ke lokasi terdekat</p>
-
-                    <!-- Link sudah diperbaiki agar langsung ke titiknya -->
-                    <a href="https://www.google.com/maps?q=-7.5988707,110.814113"
-                    target="_blank"
-                    style="padding:10px 16px; background:#4caf4f00; color:rgba(255, 255, 255, 0); border-radius:8px; text-decoration:none;">
-                    </a>
+                        <i class="bi bi-geo-alt"></i>
+                        <h3>Layanan Antar (Drop-off)</h3>
+                        <p>Antarkan sampah Anda ke lokasi terdekat</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -926,13 +920,13 @@
         
         // Drop-off Service
         function openDropOff() {
-            const url = "https://maps.app.goo.gl/u5PV6Sg9uzMrPZwUA";
-            window.open(url, '_blank');
+            const url = "https://www.google.com/maps/place/Universitas+Sugeng+Hartono+(USH)/@-7.5988707,110.814113,17z/data=!3m1!4b1!4m6!3m5!1s0x2e7a17917a011ce7:0x46ccabdfaa68d501!8m2!3d-7.5988707!4d110.814113!16s/g/11sgs5k7883";
+            window.open(url, "_blank");
         }
         
         // Pick-up Service
         function openPickUp() {
-            const phoneNumber = '6281234567890'; // Replace with actual admin number
+            const phoneNumber = '6285600720692'; // Replace with actual admin number
             const message = 'Halo Admin Zero Cycle, saya ingin menggunakan layanan jemput sampah. Mohon informasi lebih lanjut.';
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
