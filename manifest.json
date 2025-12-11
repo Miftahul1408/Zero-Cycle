@@ -1,7 +1,7 @@
 {
   "name": "ZeroCycle",
   "short_name": "ZeroCycle",
-  "start_url": "./",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#1a0033",
   "theme_color": "#1a0033",
