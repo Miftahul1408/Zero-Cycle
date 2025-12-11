@@ -1,26 +1,18 @@
 {
   "name": "ZeroCycle",
   "short_name": "ZeroCycle",
-  "start_url": "index.html",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#1a0033",
   "theme_color": "#1a0033",
   "icons": [
     {
-<<<<<<< HEAD
       "src": "icons/icon-zerocycle-192.png",
-=======
-      "src": "icons/icon-192x192-A.png",
->>>>>>> 3ee7c227d50da5facf55cc70217ea0b984d88431
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-<<<<<<< HEAD
       "src": "icons/icon-zerocycle-512.png",
-=======
-      "src": "icons/Icon-ZeroCycle-512.png",
->>>>>>> 3ee7c227d50da5facf55cc70217ea0b984d88431
       "sizes": "512x512",
       "type": "image/png"
     }

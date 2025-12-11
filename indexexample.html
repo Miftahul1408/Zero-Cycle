@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <link rel="icon" type="image/x-icon" href="/icons/icon-zerocycle-512.png" /> 
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6B7A5C">
+    <meta name="description" content="Zero Cycle - Aplikasi pengelolaan sampah berkelanjutan">
+    <title>Zero Cycle</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="manifest" href="#" id="manifest-placeholder">
+    
+    <style>
+        :root {
+            --primary-color: #6B7A5C;
+            --primary-dark: #4A5340;
+            --secondary-color: #8B9A7A;
+            --bg-color: #FFFFFF;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C8D;
+            --border-color: #E8ECEF;
+            --success-color: #27AE60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            padding-bottom: 80px;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Header */
+        .app-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .app-header .logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 15px;
+            padding: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .app-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .app-header p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin: 5px 0 0 0;
+        }
+        
+        /* Content Area */
+        .content-area {
+            padding: 20px;
+            min-height: calc(100vh - 160px);
+        }
+        
+        /* Slider */
+        .promo-slider {
+            margin-bottom: 25px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .promo-slide {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .carousel-indicators button {
+            background-color: var(--primary-color) !important;
+        }
+        
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        
+        .service-card .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .service-card h5 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .service-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        /* Merchandise Section */
+        .merchandise-section {
+            margin-top: 25px;
+        }
+        
+        .merchandise-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 15px;
+        }
+        
+        .merchandise-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .merchandise-card .card-body {
+            padding: 15px;
+        }
+        
+        .merchandise-card h6 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .merchandise-card .price {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        /* Activity History */
+        .activity-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .activity-item .date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .activity-item .type {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 3px;
+        }
+        
+        .activity-item .amount {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        .activity-item .reward {
+            color: var(--success-color);
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .empty-state i {
+            font-size: 80px;
+            color: var(--secondary-color);
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .empty-state p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* Help Center */
+        .contact-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+        
+        .contact-card .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 22px;
+        }
+        
+        .contact-card .info h6 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .contact-card .info p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        /* Education */
+        .edu-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .edu-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+        
+        .edu-card-img {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+        }
+        
+        .edu-card-body {
+            padding: 15px;
+        }
+        
+        .edu-card-body h6 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .edu-card-body p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        
+        .edu-category {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        /* Article Detail */
+        .article-detail {
+            display: none;
+        }
+        
+        .article-detail.active {
+            display: block;
+        }
+        
+        .article-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .article-header h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .article-content {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        
+        .article-content h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .article-content p {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .article-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .article-content li {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+        
+        .back-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-item i {
+            font-size: 24px;
+            margin-bottom: 3px;
+        }
+        
+        .nav-item span {
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        /* Section Management */
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Section Title */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: var(--primary-color);
+        }
+        
+        /* Button Styles */
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(107, 122, 92, 0.3);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .app-header h1 {
+                font-size: 20px;
+            }
+            
+            .content-area {
+                padding: 15px;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="app-header">
+        <div class="logo">
+            <i class="bi bi-recycle" style="font-size: 40px; color: var(--primary-color);"></i>
+        </div>
+        <h1>Zero Cycle</h1>
+        <p>Sampahmu Berharga, Bumi pun Terjaga</p>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="content-area">
+        <!-- HOME SECTION -->
+        <div id="home-section" class="section active">
+            <!-- Promo Slider -->
+            <div id="promoCarousel" class="carousel slide promo-slider" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="promo-slide">
+                            <div>
+                                <i class="bi bi-recycle" style="font-size: 50px; margin-bottom: 10px;"></i>
+                                <h3>Tukar Sampah, Dapat Merchandise!</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="promo-slide">
+                            <div>
+                                <i class="bi bi-tree" style="font-size: 50px; margin-bottom: 10px;"></i>
+                                <h3>Kampanye Bumi Hijau 2024</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="promo-slide">
+                            <div>
+                                <i class="bi bi-award" style="font-size: 50px; margin-bottom: 10px;"></i>
+                                <h3>Dapatkan Reward Setiap Transaksi</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Services -->
+            <h5 class="section-title"><i class="bi bi-grid"></i> Layanan Kami</h5>
+            
+            <div class="service-card" onclick="openDropOff()">
+                <div class="icon">
+                    <i class="bi bi-geo-alt"></i>
+                </div>
+                <h5>Layanan Antar (Drop-off)</h5>
+                <p>Antar sampah Anda ke lokasi terdekat</p>
+            </div>
+            
+            <div class="service-card" onclick="openPickUp()">
+                <div class="icon">
+                    <i class="bi bi-truck"></i>
+                </div>
+                <h5>Layanan Jemput (Pick-up)</h5>
+                <p>Kami jemput sampah dari lokasi Anda</p>
+            </div>
+            
+            <!-- Merchandise -->
+            <div class="merchandise-section">
+                <h5 class="section-title"><i class="bi bi-bag"></i> Merchandise Eksklusif</h5>
+                
+                <div id="merchCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="merchandise-card">
+                                <div style="background: linear-gradient(135deg, #6B7A5C, #8B9A7A); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 50px;">
+                                    <i class="bi bi-cup-straw"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h6>Tumbler Eksklusif Zero Cycle</h6>
+                                    <p class="price">5 kg Aluminium / 10 kg Kardus</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="merchandise-card">
+                                <div style="background: linear-gradient(135deg, #6B7A5C, #8B9A7A); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 50px;">
+                                    <i class="bi bi-bag-check"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h6>Totebag Ramah Lingkungan</h6>
+                                    <p class="price">3 kg Plastik / 7 kg Kardus</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="merchandise-card">
+                                <div style="background: linear-gradient(135deg, #6B7A5C, #8B9A7A); height: 150px; display: flex; align-items: center; justify-content: center; color: white; font-size: 50px;">
+                                    <i class="bi bi-book"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h6>Notebook Daur Ulang</h6>
+                                    <p class="price">2 kg Logam / 5 kg Kardus</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#merchCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#merchCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ACTIVITY SECTION -->
+        <div id="activity-section" class="section">
+            <h5 class="section-title"><i class="bi bi-clock-history"></i> Riwayat Aktivitas</h5>
+            
+            <div id="activity-list">
+                <!-- Activities will be loaded here -->
+            </div>
+            
+            <div id="empty-activity" class="empty-state">
+                <i class="bi bi-inbox"></i>
+                <h4>Belum Ada Aktivitas</h4>
+                <p>Mulai sedekah sampah Anda hari ini!<br>Bumi akan berterima kasih atas kontribusi Anda.</p>
+                <button class="btn-primary-custom" onclick="switchSection('home')">Mulai Sekarang</button>
+            </div>
+        </div>
+        
+        <!-- HELP SECTION -->
+        <div id="help-section" class="section">
+            <h5 class="section-title"><i class="bi bi-question-circle"></i> Pusat Bantuan</h5>
+            
+            <div class="contact-card" onclick="window.open('https://wa.me/6281234567890', '_blank')">
+                <div class="icon">
+                    <i class="bi bi-whatsapp"></i>
+                </div>
+                <div class="info">
+                    <h6>WhatsApp</h6>
+                    <p>Hubungi admin melalui WhatsApp</p>
+                </div>
+            </div>
+            
+            <div class="contact-card" onclick="window.open('https://instagram.com/zerocycle', '_blank')">
+                <div class="icon">
+                    <i class="bi bi-instagram"></i>
+                </div>
+                <div class="info">
+                    <h6>Instagram</h6>
+                    <p>Follow @zerocycle untuk update terbaru</p>
+                </div>
+            </div>
+            
+            <div class="contact-card" onclick="window.open('https://tiktok.com/@zerocycle', '_blank')">
+                <div class="icon">
+                    <i class="bi bi-tiktok"></i>
+                </div>
+                <div class="info">
+                    <h6>TikTok</h6>
+                    <p>Lihat konten edukatif kami di TikTok</p>
+                </div>
+            </div>
+            
+            <h5 class="section-title mt-4"><i class="bi bi-patch-question"></i> Pertanyaan Umum (FAQ)</h5>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    Apa itu Zero Cycle?
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Zero Cycle adalah aplikasi yang memfasilitasi pengelolaan sampah berkelanjutan. Kami membantu masyarakat untuk mendaur ulang sampah dengan mudah dan mendapatkan apresiasi untuk sampah yang bernilai tinggi.
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    Bagaimana cara menggunakan layanan?
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Anda bisa memilih antara layanan Drop-off (antar sendiri ke lokasi terdekat) atau Pick-up (kami jemput ke lokasi Anda). Pilih layanan yang sesuai di halaman beranda.
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    Jenis sampah apa yang diterima?
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Kami menerima berbagai jenis sampah bernilai tinggi seperti aluminium, logam, kardus, plastik, kertas, dan botol kaca. Untuk informasi lengkap, lihat halaman Edukasi.
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    Bagaimana cara mendapat merchandise?
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Tukarkan sampah bernilai tinggi Anda dengan merchandise eksklusif kami. Setiap jenis sampah memiliki nilai konversi yang berbeda. Cek katalog merchandise di halaman beranda.
+                </div>
+            </div>
+            
+            <div class="faq-item" onclick="toggleFAQ(this)">
+                <div class="faq-question">
+                    Apakah ada biaya untuk menggunakan layanan?
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Tidak ada biaya! Justru Anda akan mendapatkan apresiasi berupa reward points atau merchandise untuk sampah yang Anda sedekahkan.
+                </div>
+            </div>
+        </div>
+        
+        <!-- EDUCATION SECTION -->
+        <div id="education-section" class="section">
+            <div id="edu-list">
+                <h5 class="section-title"><i class="bi bi-book"></i> Edukasi Lingkungan</h5>
+                
+                <div class="edu-card" onclick="showArticle('artikel1')">
+                    <div class="edu-card-img">
+                        <i class="bi bi-recycle"></i>
+                    </div>
+                    <div class="edu-card-body">
+                        <span class="edu-category">Daur Ulang</span>
+                        <h6>Pentingnya Daur Ulang Sampah</h6>
+                        <p>Memahami manfaat dan dampak positif daur ulang bagi lingkungan dan kehidupan kita.</p>
+                    </div>
+                </div>
+                
+                <div class="edu-card" onclick="showArticle('artikel2')">
+                    <div class="edu-card-img">
+                        <i class="bi bi-trash"></i>
+                    </div>
+                    <div class="edu-card-body">
+                        <span class="edu-category">Jenis Sampah</span>
+                        <h6>Kategori Sampah Bernilai Tinggi & Rendah</h6>
+                        <p>Mengenal jenis-jenis sampah dan nilai ekonomisnya untuk daur ulang yang lebih efektif.</p>
+                    </div>
+                </div>
+                
+                <div class="edu-card" onclick="showArticle('artikel3')">
+                    <div class="edu-card-img">
+                        <i class="bi bi-app-indicator"></i>
+                    </div>
+                    <div class="edu-card-body">
+                        <span class="edu-category">Panduan</span>
+                        <h6>Cara Menggunakan Aplikasi Zero Cycle</h6>
+                        <p>Panduan lengkap menggunakan semua fitur aplikasi untuk pengalaman terbaik.</p>
+                    </div>
+                </div>
+                
+                <div class="edu-card" onclick="showArticle('artikel4')">
+                    <div class="edu-card-img">
+                        <i class="bi bi-globe"></i>
+                    </div>
+                    <div class="edu-card-body">
+                        <span class="edu-category">Lingkungan</span>
+                        <h6>Dampak Sampah Terhadap Lingkungan</h6>
+                        <p>Memahami bagaimana sampah mempengaruhi ekosistem dan perubahan iklim global.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article Detail Views -->
+            <div id="artikel1" class="article-detail">
+                <button class="back-btn" onclick="backToEducation()">
+                    <i class="bi bi-arrow-left"></i> Kembali
+                </button>
+                
+                <div class="article-header">
+                    <h2>Pentingnya Daur Ulang Sampah</h2>
+                    <p><i class="bi bi-calendar3"></i> November 2024</p>
+                </div>
+                
+                <div class="article-content">
+                    <p>Daur ulang sampah merupakan salah satu solusi paling efektif untuk mengatasi permasalahan lingkungan yang semakin kompleks. Dengan mendaur ulang, kita tidak hanya mengurangi jumlah sampah yang berakhir di tempat pembuangan akhir, tetapi juga menghemat sumber daya alam yang terbatas.</p>
+                    
+                    <h4>Manfaat Daur Ulang</h4>
+                    <ul>
+                        <li><strong>Mengurangi Pencemaran:</strong> Daur ulang membantu mengurangi polusi udara dan air yang dihasilkan dari proses produksi bahan baku baru.</li>
+                        <li><strong>Menghemat Energi:</strong> Produksi dari bahan daur ulang menggunakan energi lebih sedikit dibanding produksi dari bahan mentah.</li>
+                        <li><strong>Mengurangi Emisi Gas Rumah Kaca:</strong> Dengan mendaur ulang, kita mengurangi emisi CO2 yang berkontribusi pada perubahan iklim.</li>
+                        <li><strong>Menciptakan Lapangan Kerja:</strong> Industri daur ulang membuka peluang pekerjaan baru di berbagai sektor.</li>
+                        <li><strong>Menghemat Sumber Daya Alam:</strong> Daur ulang mengurangi kebutuhan penambangan dan penebangan yang merusak alam.</li>
+                    </ul>
+                    
+                    <h4>Peran Anda</h4>
+                    <p>Setiap individu memiliki peran penting dalam siklus daur ulang. Dengan memisahkan sampah, mengurangi penggunaan plastik sekali pakai, dan menggunakan aplikasi Zero Cycle, Anda sudah berkontribusi besar terhadap kelestarian bumi.</p>
+                    
+                    <p>Mari bersama-sama menjaga bumi untuk generasi mendatang. Mulai dari hal kecil, mulai dari sekarang!</p>
+                </div>
+            </div>
+            
+            <div id="artikel2" class="article-detail">
+                <button class="back-btn" onclick="backToEducation()">
+                    <i class="bi bi-arrow-left"></i> Kembali
+                </button>
+                
+                <div class="article-header">
+                    <h2>Kategori Sampah Bernilai Tinggi & Rendah</h2>
+                    <p><i class="bi bi-calendar3"></i> November 2024</p>
+                </div>
+                
+                <div class="article-content">
+                    <p>Tidak semua sampah memiliki nilai ekonomis yang sama. Memahami kategori sampah akan membantu Anda memaksimalkan manfaat dari program daur ulang.</p>
+                    
+                    <h4>Sampah Bernilai Tinggi</h4>
+                    <ul>
+                        <li><strong>Aluminium:</strong> Kaleng minuman, foil aluminium. Nilai tinggi karena proses daur ulang yang efisien dan hemat energi.</li>
+                        <li><strong>Logam:</strong> Besi, tembaga, kuningan. Mudah didaur ulang dan memiliki permintaan industri yang tinggi.</li>
+                        <li><strong>Kardus dan Kertas Tebal:</strong> Kotak kemasan, karton. Serat yang masih kuat dan mudah diolah kembali.</li>
+                        <li><strong>Botol Kaca:</strong> Dapat didaur ulang tanpa batas dan mempertahankan kualitas.</li>
+                        <li><strong>Plastik PET (tipe 1):</strong> Botol minuman plastik transparan. Mudah didaur ulang menjadi produk baru.</li>
+                    </ul>
+                    
+                    <h4>Sampah Bernilai Rendah</h4>
+                    <ul>
+                        <li><strong>Plastik Campur:</strong> Kantong plastik tipis, kemasan multilayer. Sulit dipisahkan dan diolah.</li>
+                        <li><strong>Kertas Berlapis:</strong> Kertas tisu, kertas minyak. Kontaminasi membuat daur ulang sulit.</li>
+                        <li><strong>Styrofoam:</strong> Wadah makanan, kemasan elektronik. Volume besar tapi bobot ringan, tidak ekonomis.</li>
+                        <li><strong>Plastik Hitam:</strong> Tidak terdeteksi oleh sensor pemilah otomatis di fasilitas daur ulang.</li>
+                    </ul>
+                    
+                    <h4>Tips Memilah Sampah</h4>
+                    <p>1. Bersihkan sampah dari sisa makanan sebelum diserahkan</p>
+                    <p>2. Pisahkan berdasarkan jenis material</p>
+                    <p>3. Pres atau lipat kardus untuk menghemat ruang</p>
+                    <p>4. Kumpulkan dalam jumlah yang memadai sebelum drop-off atau pick-up</p>
+                    
+                    <p>Dengan memahami nilai sampah, Anda dapat mengoptimalkan reward yang diterima dan berkontribusi lebih efektif pada program daur ulang!</p>
+                </div>
+            </div>
+            
+            <div id="artikel3" class="article-detail">
+                <button class="back-btn" onclick="backToEducation()">
+                    <i class="bi bi-arrow-left"></i> Kembali
+                </button>
+                
+                <div class="article-header">
+                    <h2>Cara Menggunakan Aplikasi Zero Cycle</h2>
+                    <p><i class="bi bi-calendar3"></i> November 2024</p>
+                </div>
+                
+                <div class="article-content">
+                    <p>Aplikasi Zero Cycle dirancang untuk memudahkan Anda dalam berpartisipasi pada program daur ulang sampah. Berikut panduan lengkap penggunaannya:</p>
+                    
+                    <h4>1. Halaman Beranda (Home)</h4>
+                    <p>Di halaman beranda, Anda akan menemukan:</p>
+                    <ul>
+                        <li><strong>Slider Promosi:</strong> Informasi terkini tentang kampanye, promo merchandise, dan program khusus.</li>
+                        <li><strong>Layanan Antar (Drop-off):</strong> Klik untuk melihat lokasi pengumpulan terdekat via Google Maps.</li>
+                        <li><strong>Layanan Jemput (Pick-up):</strong> Klik untuk menghubungi admin via WhatsApp dan jadwalkan penjemputan.</li>
+                        <li><strong>Katalog Merchandise:</strong> Lihat berbagai hadiah menarik yang bisa Anda tukar dengan sampah.</li>
+                    </ul>
+                    
+                    <h4>2. Riwayat Aktivitas</h4>
+                    <p>Pantau semua transaksi penukaran sampah Anda:</p>
+                    <ul>
+                        <li>Tanggal transaksi</li>
+                        <li>Jenis dan jumlah sampah yang diserahkan</li>
+                        <li>Reward atau merchandise yang diterima</li>
+                    </ul>
+                    <p>Riwayat ini membantu Anda melacak kontribusi Anda terhadap lingkungan.</p>
+                    
+                    <h4>3. Pusat Bantuan</h4>
+                    <p>Butuh bantuan? Hubungi kami melalui:</p>
+                    <ul>
+                        <li><strong>WhatsApp:</strong> Chat langsung dengan admin untuk pertanyaan atau keluhan</li>
+                        <li><strong>Instagram & TikTok:</strong> Follow untuk update, tips, dan konten edukatif</li>
+                        <li><strong>FAQ:</strong> Temukan jawaban cepat untuk pertanyaan umum</li>
+                    </ul>
+                    
+                    <h4>4. Halaman Edukasi</h4>
+                    <p>Pelajari lebih banyak tentang:</p>
+                    <ul>
+                        <li>Pentingnya daur ulang</li>
+                        <li>Jenis-jenis sampah dan nilainya</li>
+                        <li>Tips pengelolaan sampah</li>
+                        <li>Dampak lingkungan</li>
+                    </ul>
+                    
+                    <h4>Tips Maksimalkan Penggunaan</h4>
+                    <p>✓ Kumpulkan sampah hingga jumlah yang cukup untuk efisiensi</p>
+                    <p>✓ Pisahkan sampah berdasarkan jenis sebelum diserahkan</p>
+                    <p>✓ Manfaatkan layanan pick-up untuk jumlah besar</p>
+                    <p>✓ Follow media sosial kami untuk promo spesial</p>
+                    
+                    <p>Selamat menggunakan Zero Cycle! Bersama kita wujudkan bumi yang lebih bersih dan hijau.</p>
+                </div>
+            </div>
+            
+            <div id="artikel4" class="article-detail">
+                <button class="back-btn" onclick="backToEducation()">
+                    <i class="bi bi-arrow-left"></i> Kembali
+                </button>
+                
+                <div class="article-header">
+                    <h2>Dampak Sampah Terhadap Lingkungan</h2>
+                    <p><i class="bi bi-calendar3"></i> November 2024</p>
+                </div>
+                
+                <div class="article-content">
+                    <p>Sampah yang tidak dikelola dengan baik memberikan dampak negatif yang signifikan terhadap lingkungan dan kehidupan kita. Mari kita pahami lebih dalam tentang dampak-dampak tersebut.</p>
+                    
+                    <h4>Pencemaran Tanah</h4>
+                    <p>Sampah yang menumpuk di tempat pembuangan akhir (TPA) melepaskan zat kimia berbahaya yang meresap ke dalam tanah. Hal ini:</p>
+                    <ul>
+                        <li>Merusak kesuburan tanah</li>
+                        <li>Mencemari air tanah yang kita gunakan</li>
+                        <li>Membunuh mikroorganisme penting dalam tanah</li>
+                        <li>Mengurangi produktivitas pertanian</li>
+                    </ul>
+                    
+                    <h4>Pencemaran Air</h4>
+                    <p>Sampah plastik yang mencapai lautan dan sungai menyebabkan:</p>
+                    <ul>
+                        <li>Kematian hewan laut yang menelan atau terjerat plastik</li>
+                        <li>Mikroplastik masuk ke rantai makanan</li>
+                        <li>Kerusakan ekosistem terumbu karang</li>
+                        <li>Pencemaran sumber air bersih</li>
+                    </ul>
+                    
+                    <h4>Pencemaran Udara</h4>
+                    <p>Pembakaran sampah dan proses dekomposisi menghasilkan:</p>
+                    <ul>
+                        <li>Gas metana yang 25x lebih berbahaya dari CO2 untuk pemanasan global</li>
+                        <li>Dioksin dan furan yang bersifat karsinogenik</li>
+                        <li>Partikel berbahaya yang menyebabkan penyakit pernapasan</li>
+                        <li>Bau tidak sedap yang mengganggu</li>
+                    </ul>
+                    
+                    <h4>Perubahan Iklim</h4>
+                    <p>Sampah berkontribusi besar terhadap perubahan iklim melalui:</p>
+                    <ul>
+                        <li>Emisi gas rumah kaca dari TPA</li>
+                        <li>Energi tinggi untuk produksi bahan mentah baru</li>
+                        <li>Deforestasi untuk lahan pembuangan</li>
+                        <li>Transportasi dan pengolahan sampah</li>
+                    </ul>
+                    
+                    <h4>Dampak Sosial dan Ekonomi</h4>
+                    <ul>
+                        <li>Biaya tinggi untuk pengelolaan sampah</li>
+                        <li>Penurunan kualitas hidup masyarakat</li>
+                        <li>Penyakit yang ditularkan melalui vektor di area sampah</li>
+                        <li>Kerusakan estetika lingkungan</li>
+                    </ul>
+                    
+                    <h4>Solusi yang Bisa Kita Lakukan</h4>
+                    <p><strong>Reduce (Kurangi):</strong> Kurangi penggunaan produk sekali pakai</p>
+                    <p><strong>Reuse (Gunakan Kembali):</strong> Gunakan kembali barang yang masih layak</p>
+                    <p><strong>Recycle (Daur Ulang):</strong> Pisahkan dan daur ulang sampah melalui Zero Cycle</p>
+                    
+                    <p>Setiap aksi kecil kita memiliki dampak besar. Dengan berpartisipasi dalam program daur ulang, Anda turut menyelamatkan bumi dari kerusakan lebih lanjut. Mari bersama-sama menjadi pahlawan lingkungan!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchSection('home')">
+            <i class="bi bi-house-door-fill"></i>
+            <span>Beranda</span>
+        </div>
+        <div class="nav-item" onclick="switchSection('activity')">
+            <i class="bi bi-clock-history"></i>
+            <span>Riwayat</span>
+        </div>
+        <div class="nav-item" onclick="switchSection('help')">
+            <i class="bi bi-question-circle"></i>
+            <span>Bantuan</span>
+        </div>
+        <div class="nav-item" onclick="switchSection('education')">
+            <i class="bi bi-book"></i>
+            <span>Edukasi</span>
+        </div>
+    </div>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register(getServiceWorkerCode())
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed'));
+            });
+        }
+        
+        function getServiceWorkerCode() {
+            const swCode = `
+                const CACHE_NAME = 'zero-cycle-v1';
+                const urlsToCache = [
+                    '/',
+                    '/index.html'
+                ];
+                
+                self.addEventListener('install', event => {
+                    event.waitUntil(
+                        caches.open(CACHE_NAME)
+                            .then(cache => cache.addAll(urlsToCache))
+                    );
+                });
+                
+                self.addEventListener('fetch', event => {
+                    event.respondWith(
+                        caches.match(event.request)
+                            .then(response => response || fetch(event.request))
+                    );
+                });
+            `;
+            
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            return URL.createObjectURL(blob);
+        }
+        
+        // Create and inject manifest
+        const manifest = {
+            "name": "Zero Cycle",
+            "short_name": "Zero Cycle",
+            "description": "Aplikasi pengelolaan sampah berkelanjutan",
+            "start_url": "/",
+            "display": "standalone",
+            "background_color": "#FFFFFF",
+            "theme_color": "#6B7A5C",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect fill='%236B7A5C' width='192' height='192' rx='40'/%3E%3Cpath fill='white' d='M96 40L120 80H72L96 40zM136 152L112 112h48L136 152zM56 152L80 112H32L56 152z'/%3E%3C/svg%3E",
+                    "sizes": "192x192",
+                    "type": "image/svg+xml"
+                },
+                {
+                    "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%236B7A5C' width='512' height='512' rx='100'/%3E%3Cpath fill='white' d='M256 100L320 200H192L256 100zM360 412L296 312h128L360 412zM152 412L216 312H88L152 412z'/%3E%3C/svg%3E",
+                    "sizes": "512x512",
+                    "type": "image/svg+xml"
+                }
+            ]
+        };
+        
+        const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        document.getElementById('manifest-placeholder').setAttribute('href', manifestURL);
+        
+        // Section Switching
+        function switchSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            
+            // Show selected section
+            if (section === 'home') {
+                document.getElementById('home-section').classList.add('active');
+            } else if (section === 'activity') {
+                document.getElementById('activity-section').classList.add('active');
+                loadActivities();
+            } else if (section === 'help') {
+                document.getElementById('help-section').classList.add('active');
+            } else if (section === 'education') {
+                document.getElementById('education-section').classList.add('active');
+                document.getElementById('edu-list').style.display = 'block';
+                document.querySelectorAll('.article-detail').forEach(a => a.classList.remove('active'));
+            }
+            
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Load Activities from localStorage
+        function loadActivities() {
+            const activities = JSON.parse(localStorage.getItem('activities') || '[]');
+            const activityList = document.getElementById('activity-list');
+            const emptyState = document.getElementById('empty-activity');
+            
+            if (activities.length === 0) {
+                activityList.innerHTML = '';
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+                activityList.innerHTML = activities.map(activity => `
+                    <div class="activity-item">
+                        <div class="date">${activity.date}</div>
+                        <div class="type">${activity.type}</div>
+                        <div class="amount">${activity.amount}</div>
+                        <div class="reward">✓ ${activity.reward}</div>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // Add sample activity (for demonstration)
+        function addSampleActivity() {
+            const activities = JSON.parse(localStorage.getItem('activities') || '[]');
+            const newActivity = {
+                date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+                type: 'Penukaran Aluminium',
+                amount: '5 kg',
+                reward: 'Tumbler Eksklusif'
+            };
+            activities.unshift(newActivity);
+            localStorage.setItem('activities', JSON.stringify(activities));
+            loadActivities();
+        }
+        
+        // Open Drop-off Service
+        function openDropOff() {
+            // Get user's location and open Google Maps
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    window.open(`https://www.google.com/maps/search/tempat+pengumpulan+sampah/@${lat},${lng},14z`, '_blank');
+                }, () => {
+                    // Fallback if location is denied
+                    window.open('https://www.google.com/maps/search/tempat+pengumpulan+sampah', '_blank');
+                });
+            } else {
+                window.open('https://www.google.com/maps/search/tempat+pengumpulan+sampah', '_blank');
+            }
+        }
+        
+        // Open Pick-up Service
+        function openPickUp() {
+            const message = encodeURIComponent('Halo Admin Zero Cycle, saya ingin menggunakan layanan jemput sampah. Mohon informasi lebih lanjut.');
+            window.open(`https://wa.me/6281234567890?text=${message}`, '_blank');
+        }
+        
+        // Toggle FAQ
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+        
+        // Show Article
+        function showArticle(articleId) {
+            document.getElementById('edu-list').style.display = 'none';
+            document.getElementById(articleId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        // Back to Education List
+        function backToEducation() {
+            document.querySelectorAll('.article-detail').forEach(article => {
+                article.classList.remove('active');
+            });
+            document.getElementById('edu-list').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadActivities();
+            
+            // Auto-slide carousel
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(carousel => {
+                new bootstrap.Carousel(carousel, {
+                    interval: 3000,
+                    ride: 'carousel'
+                });
+            });
+        });
+        
+        // Add install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install button (optional)
+            console.log('PWA can be installed');
+        });
+    </script>
+</body>
+</html>
