@@ -1159,21 +1159,7 @@
         .then(() => console.log('SW registered!'))
         .catch(err => console.error('SW gagal:', err));
     }
-            window.addEventListener('load', () => {
-                const swCode = `
-                    const CACHE_NAME = 'zero-cycle-v1';
-                    self.addEventListener('install', e => {
-                        e.waitUntil(caches.open(CACHE_NAME));
-                    });
-                    self.addEventListener('fetch', e => {
-                        e.respondWith(
-                            caches.match(e.request).then(r => r || fetch(e.request))
-                        );
-                    });
-                `;
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                navigator.serviceWorker.register(URL.createObjectURL(blob));
-            });
+            
         
         
         // Section Switching
