@@ -1,28 +1,55 @@
 {
+  "id": "./",
   "name": "ZeroCycle",
   "short_name": "ZeroCycle",
+  "description": "ZeroCycle adalah aplikasi PWA yang memfasilitasi penyetoran sampah non-organik (ke pengepul/mesin daur ulang).",
   "start_url": "index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#1a0033",
   "theme_color": "#1a0033",
+  "orientation": "portrait",
+  "lang": "id",
   "icons": [
     {
-<<<<<<< HEAD
-      "src": "icons/icon-zerocycle-192.png",
-=======
-      "src": "icons/icon-192x192-A.png",
->>>>>>> 3ee7c227d50da5facf55cc70217ea0b984d88431
+      "src": "icons/Icon-ZeroCycle-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-<<<<<<< HEAD
-      "src": "icons/icon-zerocycle-512.png",
-=======
       "src": "icons/Icon-ZeroCycle-512.png",
->>>>>>> 3ee7c227d50da5facf55cc70217ea0b984d88431
       "sizes": "512x512",
       "type": "image/png"
     }
+ ],
+  "screenshots": [
+    {
+      "src": "icons/screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/screenshot2.png",
+      "sizes": "1080x1920",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Buka Beranda",
+      "short_name": "Home",
+      "url": "./index.html",
+      "icons": [
+        {
+          "src": "icons/Icon-ZeroCycle-192.png",
+          "type": "image/png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    "productivity",
+    "utilities"
   ]
 }
