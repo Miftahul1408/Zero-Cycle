@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#6B7A5C">
+    <meta name="theme-color" content="##99BD4">
     <meta name="description" content="Zero Cycle - Aplikasi pengelolaan sampah berkelanjutan">
     <title>Zero Cycle</title>
     <link rel="icon" type="image/png" href="icons/tanpaltr-192.png">
@@ -20,11 +20,11 @@
     
     <style>
         :root {
-            --primary-color: #6B7A5C;
-            --primary-dark: #4A5340;
-            --secondary-color: #8B9A7A;
+            --primary-color: #518123;
+            --primary-dark: #225808;
+            --secondary-color: #99BD49;
             --bg-color: #F8F9FA;
-            --text-primary: #2C3E50;
+            --text-primary: #0C1805;
             --text-secondary: #7F8C8D;
             --border-color: #E8ECEF;
             --success-color: #27AE60;
@@ -51,7 +51,7 @@
         
         /* Header */
         .app-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color) 25%);
             color: white;
             padding: 20px;
             text-align: center;
@@ -141,15 +141,26 @@
         }
         
         /* Service Cards */
+        .services-grid {
+            display: flex;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
         .service-card {
+            flex: 1;
             background: white;
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px 10px;
+            text-align: center;
             margin-bottom: 15px;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .service-card:hover {
@@ -342,6 +353,10 @@
             padding-top: 10px;
             border-top: 1px solid var(--border-color);
             display: none;
+            text-align: justify;
+            padding-right: 0px;
+            padding-left: 0px;
+            padding-bottom: 10px;
         }
         
         .faq-item.active .faq-answer {
@@ -519,7 +534,7 @@
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 0;
             z-index: 1000;
         }
         
@@ -528,7 +543,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 5px;
+            padding: 0px;
             color: var(--text-secondary);
             text-decoration: none;
             cursor: pointer;
@@ -536,11 +551,25 @@
         }
         
         .nav-item.active {
-            color: var(--primary-color);
+            color: #518123;
+            position: relative;
+
+        }
+
+        .nav-item.active::before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 10%;
+        width: 80%;
+        height: 5px;
+        background-color: #518123; /* Warna 100% tanpa gradasi untuk garisnya */
+        border-radius: 0 0 5px 5px;
         }
         
         .nav-item i {
             font-size: 24px;
+            margin-top: 8px;
             margin-bottom: 3px;
         }
         
@@ -654,7 +683,7 @@
                 </div>
             </div>
             
-            <h5 class="section-title"><i class="bi bi-grid"></i> Layanan Kami</h5>
+            <h5 class="section-title" style="color: #518123; font-weight: 800;"> Layanan Kami</h5>
             
             <div class="service-card" onclick="openDropOff()">
                 <div class="icon">
@@ -673,7 +702,7 @@
             </div>
             
             <div class="merchandise-section">
-                <h5 class="section-title"><i class="bi bi-bag"></i> Merchandise Eksklusif</h5>
+                <h5 class="section-title" style="color: #518123; font-weight: 800;"> Merchandise Eksklusif</h5>
                 
                 <div id="merchCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -726,7 +755,7 @@
         
         <!-- ACTIVITY SECTION -->
         <div id="activity-section" class="section">
-            <h5 class="section-title"><i class="bi bi-clock-history"></i> Riwayat Aktivitas</h5>
+            <h5 class="section-title" style="color: #518123; font-weight: 800;"> Riwayat Aktivitas</h5>
             
             <div id="activity-list"></div>
             
@@ -740,14 +769,14 @@
         
         <!-- HELP SECTION -->
         <div id="help-section" class="section">
-            <h5 class="section-title"><i class="bi bi-question-circle"></i> Pusat Bantuan</h5>
+            <h5 class="section-title" style="color: #518123; font-weight: 800;"> Pusat Bantuan</h5>
             
             <div class="contact-card" onclick="window.open('https://wa.me/6285600720692', '_blank')">
                 <div class="icon">
                     <i class="bi bi-whatsapp"></i>
                 </div>
                 <div class="info">
-                    <h6>WhatsApp</h6>
+                    <h6>WhatsApp</h6> 
                     <p>Hubungi admin melalui WhatsApp</p>
                 </div>
             </div>
@@ -772,7 +801,7 @@
                 </div>
             </div>
             
-            <h5 class="section-title mt-4"><i class="bi bi-patch-question"></i> Pertanyaan Umum (FAQ)</h5>
+            <h5 class="section-title mt-4" style="color: #518123; font-weight: 800;"> Pertanyaan Umum (FAQ)</h5>
             
             <div class="faq-item" onclick="toggleFAQ(this)">
                 <div class="faq-question">
@@ -828,7 +857,7 @@
         <!-- EDUCATION SECTION -->
         <div id="education-section" class="section">
             <div id="edu-list">
-                <h5 class="section-title"><i class="bi bi-play-circle-fill"></i> Video Edukasi</h5>
+                <h5 class="section-title" style="color: #518123; font-weight: 800;"> Video Edukasi</h5>
                 
                 <!-- Video 1 -->
                 <div class="edu-card">
@@ -898,7 +927,7 @@
                     </div>
                 </div>
                 
-                <h5 class="section-title mt-4"><i class="bi bi-file-text"></i> Artikel Edukasi</h5>
+                <h5 class="section-title mt-4" style="color: #518123; font-weight: 800;"> Artikel Edukasi</h5>
                 
                 <div class="edu-card clickable" onclick="showArticle('artikel1')">
                     <div class="edu-card-img">
