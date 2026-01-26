@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <link rel="icon" type="image/x-icon" href="/icons/icon-zerocycle-512.png" /> 
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#6B7A5C">
+    <meta name="theme-color" content="##99BD4">
     <meta name="description" content="Zero Cycle - Aplikasi pengelolaan sampah berkelanjutan">
     <title>Zero Cycle</title>
     <link rel="icon" type="image/png" href="icons/tanpaltr-192.png">
     
+
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,11 +20,11 @@
     
     <style>
         :root {
-            --primary-color: #6B7A5C;
-            --primary-dark: #4A5340;
-            --secondary-color: #8B9A7A;
+            --primary-color: #518123;
+            --primary-dark: #225808;
+            --secondary-color: #99BD49;
             --bg-color: #F8F9FA;
-            --text-primary: #2C3E50;
+            --text-primary: #0C1805;
             --text-secondary: #7F8C8D;
             --border-color: #E8ECEF;
             --success-color: #27AE60;
@@ -47,7 +51,7 @@
         
         /* Header */
         .app-header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color) 25%);
             color: white;
             padding: 20px;
             text-align: center;
@@ -99,6 +103,7 @@
             font-weight: 600;
             font-size: 18px;
             text-align: center;
+            padding: 80px;
             padding: 20px;
             position: relative;
         }
@@ -136,15 +141,26 @@
         }
         
         /* Service Cards */
+        .services-grid {
+            display: flex;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
         .service-card {
+            flex: 1;
             background: white;
             border-radius: 15px;
-            padding: 20px;
+            padding: 15px 10px;
+            text-align: center;
             margin-bottom: 15px;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .service-card:hover {
@@ -337,6 +353,10 @@
             padding-top: 10px;
             border-top: 1px solid var(--border-color);
             display: none;
+            text-align: justify;
+            padding-right: 0px;
+            padding-left: 0px;
+            padding-bottom: 10px;
         }
         
         .faq-item.active .faq-answer {
@@ -473,6 +493,7 @@
             font-size: 14px;
             line-height: 1.7;
             margin-bottom: 15px;
+            text-align: justify;
         }
         
         .article-content ul {
@@ -484,6 +505,7 @@
             font-size: 14px;
             line-height: 1.7;
             margin-bottom: 8px;
+            text-align: justify;
         }
         
         .back-btn {
@@ -498,6 +520,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            margin-bottom: 20px;
         }
         
         .back-btn:hover {
@@ -514,7 +537,7 @@
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-around;
-            padding: 10px 0;
+            padding: 0;
             z-index: 1000;
         }
         
@@ -523,7 +546,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 5px;
+            padding: 0px;
             color: var(--text-secondary);
             text-decoration: none;
             cursor: pointer;
@@ -531,11 +554,25 @@
         }
         
         .nav-item.active {
-            color: var(--primary-color);
+            color: #518123;
+            position: relative;
+
+        }
+
+        .nav-item.active::before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 10%;
+        width: 80%;
+        height: 5px;
+        background-color: #518123; /* Warna 100% tanpa gradasi untuk garisnya */
+        border-radius: 0 0 5px 5px;
         }
         
         .nav-item i {
             font-size: 24px;
+            margin-top: 8px;
             margin-bottom: 3px;
         }
         
@@ -649,7 +686,7 @@
                 </div>
             </div>
             
-            <h5 class="section-title"><i class="bi bi-grid"></i> Layanan Kami</h5>
+            <h5 class="section-title" style="color: #518123; font-weight: 800;"> Layanan Kami</h5>
             
             <div class="service-card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=Universitas+Sugeng+Hartono+(USH)','_blank')">
                 <div class="icon">
@@ -668,7 +705,7 @@
             </div>
             
             <div class="merchandise-section">
-                <h5 class="section-title"><i class="bi bi-bag"></i> Merchandise Eksklusif</h5>
+                <h5 class="section-title" style="color: #518123; font-weight: 800;"> Merchandise Eksklusif</h5>
                 
                 <div id="merchCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -692,7 +729,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h6>Tas Ramah Lingkungan</h6>
-                                    <p class="price">3 kg Plastik / 7 kg Kardus</p>
+                                    <p class="price">3 kg Besi / 10 kg Kardus</p>
                                 </div>
                             </div> 
                         </div>
@@ -704,7 +741,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h6>Paket Lengkap Daur Ulang</h6>
-                                    <p class="price">2 kg Logam / 5 kg Kardus</p>
+                                    <p class="price">8 kg Logam / 15 kg Kardus</p>
                                 </div>
                             </div>
                         </div>
@@ -721,12 +758,12 @@
         
         <!-- ACTIVITY SECTION -->
         <div id="activity-section" class="section">
-            <h5 class="section-title"><i class="bi bi-clock-history"></i> Riwayat Aktivitas</h5>
+            <h5 class="section-title" style="color: #518123; font-weight: 800;"> Riwayat Aktivitas</h5>
             
             <div id="activity-list"></div>
             
             <div id="empty-activity" class="empty-state">
-                <i class="bi bi-inbox"></i>
+                <img src="assets/img/illustrasi/Ilustrasinoactivity.png" alt="Belum Ada Aktivitas" style="max-width: 200px; margin-bottom: 20px;">
                 <h4>Belum Ada Aktivitas</h4>
                 <p>Mulai sedekah sampah Anda hari ini!<br>Bumi akan berterima kasih atas kontribusi Anda.</p>
                 <button class="btn-primary-custom" onclick="switchSection('home')">Mulai Sekarang</button>
@@ -734,15 +771,18 @@
         </div>
         
         <!-- HELP SECTION -->
-        <div id="help-section" class="section">
-            <h5 class="section-title"><i class="bi bi-question-circle"></i> Pusat Bantuan</h5>
+        <div id="help-section" class="section" style="text-align: center;">
+            <h5 class="section-title" style="color: #518123; font-weight: 800;"> Pusat Bantuan</h5>
+
+                <img src="assets/img/illustrasi/Ilustrasi help_page-10.png" alt="Bantuan" style="max-width: 200px; margin-bottom: 20px;">
+
             
             <div class="contact-card" onclick="window.open('https://wa.me/6285600720692', '_blank')">
                 <div class="icon">
                     <i class="bi bi-whatsapp"></i>
                 </div>
                 <div class="info">
-                    <h6>WhatsApp</h6>
+                    <h6>WhatsApp</h6> 
                     <p>Hubungi admin melalui WhatsApp</p>
                 </div>
             </div>
@@ -767,7 +807,7 @@
                 </div>
             </div>
             
-            <h5 class="section-title mt-4"><i class="bi bi-patch-question"></i> Pertanyaan Umum (FAQ)</h5>
+            <h5 class="section-title mt-4" style="color: #518123; font-weight: 800;"> Pertanyaan Umum (FAQ)</h5>
             
             <div class="faq-item" onclick="toggleFAQ(this)">
                 <div class="faq-question">
@@ -823,7 +863,7 @@
         <!-- EDUCATION SECTION -->
         <div id="education-section" class="section">
             <div id="edu-list">
-                <h5 class="section-title"><i class="bi bi-play-circle-fill"></i> Video Edukasi</h5>
+                <h5 class="section-title" style="color: #518123; font-weight: 800;"> Video Edukasi</h5>
                 
                 <!-- Video 1 -->
                 <div class="edu-card">
@@ -893,11 +933,11 @@
                     </div>
                 </div>
                 
-                <h5 class="section-title mt-4"><i class="bi bi-file-text"></i> Artikel Edukasi</h5>
+                <h5 class="section-title mt-4" style="color: #518123; font-weight: 800;"> Artikel Edukasi</h5>
                 
                 <div class="edu-card clickable" onclick="showArticle('artikel1')">
                     <div class="edu-card-img">
-                        <img src="assets/img/artikel/artikel1.png" alt="Daur Ulang" onerror="this.parentElement.innerHTML='<i class=\'bi bi-recycle\'></i>'">
+                        <img src="assets/img/artikel/revisi1.jpeg" alt="Daur Ulang" onerror="this.parentElement.innerHTML='<i class=\'bi bi-recycle\'></i>'">
                     </div>
                     <div class="edu-card-body">
                         <span class="edu-category">Daur Ulang</span>
@@ -919,7 +959,7 @@
                 
                 <div class="edu-card clickable" onclick="showArticle('artikel3')">
                     <div class="edu-card-img">
-                        <img src="assets/img/artikel/jenissampah.png" alt="Panduan App" onerror="this.parentElement.innerHTML='<i class=\'bi bi-app-indicator\'></i>'">
+                        <img src="assets/img/artikel/revisi3.jpeg" alt="Panduan App" onerror="this.parentElement.innerHTML='<i class=\'bi bi-app-indicator\'></i>'">
                     </div>
                     <div class="edu-card-body">
                         <span class="edu-category">Panduan</span>
@@ -930,7 +970,7 @@
                 
                 <div class="edu-card clickable" onclick="showArticle('artikel4')">
                     <div class="edu-card-img">
-                        <img src="assets/img/artikel/daur-ulang.png" alt="Dampak Lingkungan" onerror="this.parentElement.innerHTML='<i class=\'bi bi-globe\'></i>'">
+                        <img src="assets/img/artikel/revisi 4.jpeg" alt="Dampak Lingkungan" onerror="this.parentElement.innerHTML='<i class=\'bi bi-globe\'></i>'">
                     </div>
                     <div class="edu-card-body">
                         <span class="edu-category">Lingkungan</span>
@@ -1209,24 +1249,14 @@
         
         // Open Drop-off Service
         function openDropOff() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    pos => {
-                        const lat = pos.coords.latitude;
-                        const lng = pos.coords.longitude;
-                        window.open(`https://www.google.com/maps/search/bank+sampah/@${lat},${lng},14z`, '_blank');
-                    },
-                    () => window.open('https://www.google.com/maps/search/bank+sampah+terdekat', '_blank')
-                );
-            } else {
-                window.open('https://www.google.com/maps/search/bank+sampah+terdekat', '_blank');
-            }
+            window.open('https://maps.app.goo.gl/sHraTVZ5Lm9Eh3WM9', '_blank');
+
         }
         
         // Open Pick-up Service
         function openPickUp() {
             const msg = encodeURIComponent('Halo Admin Zero Cycle, saya ingin menggunakan layanan jemput sampah. Mohon informasi lebih lanjut.');
-            window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+            window.open(`https://wa.me/6285600720692?text=${msg}`, '_blank');
         }
         
         // Toggle FAQ
